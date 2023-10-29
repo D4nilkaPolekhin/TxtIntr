@@ -1,10 +1,13 @@
-CXX = g++
-CXXFLAGS = -std=c++11
+CC = g++
 
-all: calculator
+CFLAGS = -std=c++11 -Wall
 
-calculator: calculator.cpp
-	$(CXX) $(CXXFLAGS) -o calculator calculator.cpp
+TARGET = tangent_calculator
+
+all: $(TARGET)
+
+$(TARGET): main.cpp
+	$(CC) $(CFLAGS) -o $(TARGET) main.cpp
 
 clean:
-	rm -f calculator
+	rm -f $(TARGET)
