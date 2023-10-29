@@ -2,26 +2,37 @@
 #include <cmath>
 #include <cstdlib>
 
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        std::cout << "Использование: " << argv[0] << " <угол_в_градусах_или_радианах>" << std::endl;
+int main() {
+    std::string input;
+    double angle;
+
+    std::cout << "Введите угол в градусах или радианах: ";
+    std::cin >> input;
+
+
+    try {
+        angle = std::stod(input);
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Ошибка: Введенное значение не является числом." << std::endl;
         return 1;
     }
 
-    double angle = std::atof(argv[1]);
-    double tangent, cotangent;
-
-    if (std::string(argv[1]).find("pi") != std::string::npos) {
-        tangent = tan(angle);
-        cotangent = 1.0 / tan(angle);
+    double radians;
+    if (input.find("rad") != std::string::npos) {
+        radians = angle;
+    } else if (input.find("deg") != std::string::npos) {
+        radians = angle * M_PI / 180.0;
     } else {
-        double angle_radians = angle * M_PI / 180.0;
-        tangent = tan(angle_radians);
-        cotangent = 1.0 / tan(angle_radians);
+        std::cerr << "Ошибка: Не удалось определить единицы измерения угла (используйте 'rad' или 'deg')." << std::endl;
+        return 1;
     }
 
-    std::cout << "Тангенс угла: " << tangent << std::endl;
-    std::cout << "Котангенс угла: " << cotangent << std::endl;
+    double tangent = tan(radians);
+    double cotangent = 1.0 / tangent;
+
+    std::cout << "Тангенс(" << angle << ") = " << tangent << std::endl;
+    std::cout << "Котангенс(" << angle << ") = " << cotangent << std::endl;
 
     return 0;
 }
+
