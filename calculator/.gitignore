@@ -1,6 +1,7 @@
-tangent_calculator
+calculator
 
 *.o
 
-build/
+*.out
 
+build/
