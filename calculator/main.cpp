@@ -3,7 +3,7 @@
 #include <cmath> 
 #include <string> 
 namespace po = boost::program_options;
-#define PI 3.14159265
+#define PI 3.14
 double tg(double x){
     return (tan(x)*180.0)/(PI);
     }
@@ -37,7 +37,7 @@ int main(int argc,char * argv[])
             std::cout<<"Тангенс "<<temp<<" равен: "<<tg(temp)<<std::endl;
             }
         else if (vm.count("operation") and vm["operation"].as<std::string>()=="ctg"){
-            std::cout<<"Котангенс "<<temp<<" равен: "<<arccotan(temp)<<std::endl;
+            std::cout<<"Котангенс "<<temp<<" равен: "<<ctg(temp)<<std::endl;
             }
         else{
             std::cout<<"Ошибочное название параметра"<<std::endl;
